@@ -79,7 +79,7 @@ exports.update = function(req, res) {
   req.quiz.pregunta  = req.body.quiz.pregunta;
   req.quiz.respuesta = req.body.quiz.respuesta;
 
-  var errors = quiz.validate();
+  var errors = req.quiz.validate();
   if (errors)
   {
      res.render('quizes/new', {quiz: quiz, errors: errors});
