@@ -79,19 +79,17 @@ exports.update = function(req, res) {
   req.quiz.pregunta  = req.body.quiz.pregunta;
   req.quiz.respuesta = req.body.quiz.respuesta;
 
-  req.quiz
-  .validate()
-  .then(
-    function(err){
-      if (err) {
-        res.render('quizes/edit', {quiz: req.quiz, errors: err.errors});
-      } else {
+  var errors = quiz.validate();
+  if (errors)
+  {
+     res.render('quizes/new', {quiz: quiz, errors: errors});
+  }
+  else
+  {
         req.quiz     // save: guarda campos pregunta y respuesta en DB
         .save( {fields: ["pregunta", "respuesta"]})
         .then( function(){ res.redirect('/quizes');});
-      }     // Redirección HTTP a lista de preguntas (URL relativo)
-    }
-  ).catch(function(error){next(error)});
+  }  
 };
 
 // DELETE /quizes/:id
