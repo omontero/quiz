@@ -14,8 +14,12 @@
 <script>
 function seleccionar(elemento) {
    var combo = document.getElementById("tema");
+   alert(document.getElementById("tema"));
+   
    var cantidad = combo.length;
+   alert(cantidad);
    for (i = 0; i < cantidad; i++) {
+   		alert(combo[i].value);
       if (combo[i].value == elemento) {
          combo[i].selected = true;
       }   
