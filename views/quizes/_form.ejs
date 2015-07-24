@@ -5,10 +5,10 @@
 <label for="tema" class="rem">Tema:</label>
 <select id="tema" name="quiz[tema]">
   <option value="otro" <% if (quiz.tema === 'otro') { %> selected <% } %> >Otro</option>
-  <option value="humanidades">Humanidades</option>
+  <option value="humanidades" <% if (quiz.tema === 'humanidades') { %> selected <% } %> >Humanidades</option>
   <option value="ocio" <% if (quiz.tema === 'ocio') { %> selected <% } %> >Ocio</option>
-  <option value="ciencia">Ciencia</option>
-  <option value="tecnologia">Tecnolog&iacute;a</option>
+  <option value="ciencia" <% if (quiz.tema === 'ciencia') { %> selected <% } %> >Ciencia</option>
+  <option value="tecnologia" <% if (quiz.tema === 'tecnologia') { %> selected <% } %> >Tecnolog&iacute;a</option>
 </select>
 <a href="/quizes"><button type="button">Cancelar</button></a>
 <input type="submit" value="Salvar">
