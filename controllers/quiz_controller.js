@@ -16,6 +16,7 @@ models.Quiz.find(quizId).then(
 exports.index = function(req, res) {
   models.Quiz.findAll().then(
     function(quizes) {
+			res.header('Cache-Control', 'no-Cache');    	
       res.render('quizes/index.ejs', {quizes: quizes, errors: []});
     }
   ).catch(function(error){next(error)});
