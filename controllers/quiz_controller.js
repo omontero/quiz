@@ -15,11 +15,9 @@ models.Quiz.find(quizId).then(
 // GET /quizes
 exports.index = function(req, res) {
 	// Si llega el parámetro search y no está vacío
-	if ((req.search) && (req.search !== "") {
-		alert("dentro");
+	if ((req.search) && (req.search !== "")) {
 		var cadena = req.search.replace(" ", "%");
 		cadena = "%" + cadena + "%";
-		
 	  models.Quiz.findAll({where: ["pregunta like ?", search]}).then(
 	    function(quizes) {
 				res.header('Cache-Control', 'no-Cache');    	
