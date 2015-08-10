@@ -14,12 +14,23 @@ models.Quiz.find(quizId).then(
 
 // GET /quizes
 exports.index = function(req, res) {
-  models.Quiz.findAll().then(
-    function(quizes) {
-			res.header('Cache-Control', 'no-Cache');    	
-      res.render('quizes/index.ejs', {quizes: quizes, errors: []});
-    }
-  ).catch(function(error){next(error)});
+	// Si llega el parámetro search y no está vacío
+	if ((req.search) && (req.search !== "") {
+	  models.Quiz.findAll().then(
+	    function(quizes) {
+				res.header('Cache-Control', 'no-Cache');    	
+	      res.render('quizes/index.ejs', {quizes: quizes, errors: []});
+	    }
+	  ).catch(function(error){next(error)});
+	}
+	else {
+	  models.Quiz.findAll().then(
+	    function(quizes) {
+				res.header('Cache-Control', 'no-Cache');    	
+	      res.render('quizes/index.ejs', {quizes: quizes, errors: []});
+	    }
+	  ).catch(function(error){next(error)});
+	}
 };
 
 // GET /quizes/:id

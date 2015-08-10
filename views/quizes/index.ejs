@@ -19,6 +19,15 @@
       </td>
     </tr> 
   <% } %>
+  <tr>
+  	<td colspan=2>
+			<a href="/quizes/new"><button>Crear pregunta</button></a>
+  	</td>
+  	<td colspan=2>
+  		<form method="get" action="/quizes">
+  			<input type="text" name="search">
+				<input type="submit" value="Búsqueda">
+			</form>
+  	</td>
+  </tr>
 </table>
-<p/>
-<a href="/quizes/new"><button>Crear pregunta</button></a>
