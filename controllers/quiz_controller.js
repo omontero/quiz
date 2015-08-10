@@ -16,7 +16,7 @@ models.Quiz.find(quizId).then(
 exports.index = function(req, res) {
 	// Si llega el parámetro search y no está vacío
 	console.log("Decidiendo");
-	console.log(req.search);
+	console.log(req.query.search);
 	if ((req.search) && (req.search !== "")) {
 		var cadena = req.search.replace(" ", "%");
 		cadena = "%" + cadena + "%";
