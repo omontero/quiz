@@ -18,7 +18,7 @@ exports.index = function(req, res) {
 	if ((req.search) && (req.search !== "")) {
 		var cadena = req.search.replace(" ", "%");
 		cadena = "%" + cadena + "%";
-	  models.Quiz.findAll({where: ["pregunta like ?", search]}).then(
+	  models.Quiz.findAll({where: ["pregunta like ?", cadena]}).then(
 	    function(quizes) {
 				res.header('Cache-Control', 'no-Cache');    	
 	      res.render('quizes/index.ejs', {quizes: quizes, errors: []});
