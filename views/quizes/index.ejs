@@ -24,19 +24,19 @@
 		  <% } %>
     </tr> 
   <% } %>
+  <%if(session.user){%>
+	  <tr>
+	  	<td colspan=4>
+				<a href="/quizes/new"><button>Crear pregunta</button></a>
+	  	</td>
+	  </tr>
+  <% } %>
   <tr>
-  	<td colspan=4>
-			<a href="/quizes/new"><button>Crear pregunta</button></a>
-  	</td>
-  </tr>
-  <tr>
-	  <%if(session.user){%>
 	  	<td colspan=4>
 	  		<form method="get" action="/quizes">
 	  			<input type="text" name="search">
 					<input type="submit" value="B&uacute;squeda">
 				</form>
 	  	</td>
-	  <% } %>
   </tr>
 </table>
