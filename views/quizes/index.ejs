@@ -9,14 +9,19 @@
     <tr>
       <td><%= quizes[i].tema %></td>
       <td><a href="quizes/<%= quizes[i].id %>"><%= quizes[i].pregunta %></a></td>
-      <td><a href="quizes/<%= quizes[i].id %>/edit"><button>editar</button></a></td>
-      <td>
-        <form method="post" action="quizes/<%= quizes[i].id %>?_method=delete">
-          <button type="submit" onClick="return confirm('Borrar: <%= quizes[i].pregunta %>');">
-            borrar
-          </button>
-        </form>
-      </td>
+      <%if(session.user){%>
+	      <td><a href="quizes/<%= quizes[i].id %>/edit"><button>editar</button></a></td>
+	      <td>
+	        <form method="post" action="quizes/<%= quizes[i].id %>?_method=delete">
+	          <button type="submit" onClick="return confirm('Borrar: <%= quizes[i].pregunta %>');">
+	            borrar
+	          </button>
+	        </form>
+	      </td>
+		  <% } else { %>
+		  	<td>S&oacute;lo usuarios registrados</td>
+		  	<td>S&oacute;lo usuarios registrados</td>
+		  <% } %>
     </tr> 
   <% } %>
   <tr>
@@ -25,11 +30,13 @@
   	</td>
   </tr>
   <tr>
-  	<td colspan=4>
-  		<form method="get" action="/quizes">
-  			<input type="text" name="search">
-				<input type="submit" value="B&uacute;squeda">
-			</form>
-  	</td>
+	  <%if(session.user){%>
+	  	<td colspan=4>
+	  		<form method="get" action="/quizes">
+	  			<input type="text" name="search">
+					<input type="submit" value="B&uacute;squeda">
+				</form>
+	  	</td>
+	  <% } %>
   </tr>
 </table>
