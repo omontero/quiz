@@ -1,7 +1,18 @@
 // MW de autorización de accesos HTTP restringidos
 exports.loginRequired = function(req, res, next){
     if (req.session.user) {
-        next();
+    		// Comprobamos si ha caducado la sesión
+    		var fechaActual = new Date();
+    		var miliSecActual = fechaActual.getTime();
+    		var difMiliSec = miliSecActual - req.session.miliSecInicio;
+    		// Si la diferencia es mayor a 120000 (2 minutos), borramos la sesión
+    		if (difMiliSec > 120000) {
+    			delete req.session.user;
+    			res.redirect('/login');
+    		}
+    		else {
+    			next();
+      	}
     } else {
         res.redirect('/login');
     }
@@ -33,6 +44,10 @@ exports.create = function(req, res) {
         // Crear req.session.user y guardar campos   id  y  username
         // La sesión se define por la existencia de:    req.session.user
         req.session.user = {id:user.id, username:user.username};
+
+				// Almacenamos en session la marca de tiempo que permitirá determinar el logout automático
+				var fechaInicial = new Date();
+				req.session.miliSecInicio = fechaInicial.getTime();
 
         res.redirect(req.session.redir.toString());// redirección a path anterior a login
     });
